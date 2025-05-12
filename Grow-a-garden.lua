@@ -6,6 +6,9 @@ local Window = Library:NewWindow("Grow A Garden Script")
 
 local Tab = Window:NewSection("Auto Farm")
 
+print("✅ Kausal's script started")
+task.wait(1)
+
 -- Toggle state
 _G.AutoHarvest = false
 Tab:CreateToggle("Auto Harvest", function(state)
