@@ -1,5 +1,6 @@
 -- Load Orion UI
-local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/OrionLibrary/Orion/refs/heads/main/source.lua"))()
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/OrionLibrary/Orion/main/source.lua
+"))()
 
 -- Create the main window
 local Window = OrionLib:MakeWindow({
