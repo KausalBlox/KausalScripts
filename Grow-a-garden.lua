@@ -1,7 +1,7 @@
--- Load Rayfield UI (official source)
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+-- ✅ Load Rayfield UI Library (official)
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
--- Create the main window
+-- ✅ Create main window
 local Window = Rayfield:CreateWindow({
     Name = "🌿 Grow A Garden Hub",
     LoadingTitle = "Starting...",
@@ -14,7 +14,6 @@ local Window = Rayfield:CreateWindow({
 -- 🌾 Auto Farm Tab
 local AutoFarmTab = Window:CreateTab("🌾 Auto Farm", 4483362458)
 
--- Auto Harvest Toggle
 _G.AutoHarvest = false
 AutoFarmTab:CreateToggle({
     Name = "Enable Auto Harvest",
@@ -24,7 +23,7 @@ AutoFarmTab:CreateToggle({
     end
 })
 
--- Auto Harvest Logic
+-- 🔁 Auto Harvest Loop
 task.spawn(function()
     while task.wait(1) do
         if not _G.AutoHarvest then continue end
@@ -52,53 +51,41 @@ task.spawn(function()
 end)
 
 -- 🌱 Seed Shop Tab
-local SeedShopTab = Window:CreateTab("🌱 Seed Shop", 7734053497)
-
-SeedShopTab:CreateButton({
+local SeedTab = Window:CreateTab("🌱 Seed Shop", 7734053497)
+SeedTab:CreateButton({
     Name = "Open Seed Shop UI",
     Callback = function()
         local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Seed_Shop")
-        if gui then
-            gui.Enabled = true
-        end
+        if gui then gui.Enabled = true end
     end
 })
 
 -- 🐣 Pet Eggs Tab
 local PetTab = Window:CreateTab("🐣 Pet Eggs", 7734005275)
-
 PetTab:CreateButton({
     Name = "Open Pet UI",
     Callback = function()
         local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Pet_UI")
-        if gui then
-            gui.Enabled = true
-        end
+        if gui then gui.Enabled = true end
     end
 })
 
 -- ⚔️ Gear Shop Tab
 local GearTab = Window:CreateTab("⚔️ Gear Shop", 7733960981)
-
 GearTab:CreateButton({
     Name = "Open Gear Shop UI",
     Callback = function()
         local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Gear_Shop")
-        if gui then
-            gui.Enabled = true
-        end
+        if gui then gui.Enabled = true end
     end
 })
 
--- 🎉 Event UI Tab
+-- 🎉 Events Tab
 local EventTab = Window:CreateTab("🎉 Event UI", 7733960981)
-
 EventTab:CreateButton({
     Name = "Open Event UI",
     Callback = function()
         local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Event_UI")
-        if gui then
-            gui.Enabled = true
-        end
+        if gui then gui.Enabled = true end
     end
 })
