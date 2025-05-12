@@ -1,17 +1,32 @@
--- Grow a Garden UI Script by Kausal
+-- Load Orion UI
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 
--- Load Wizard UI Library
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
-local Window = Library:NewWindow("Grow A Garden Hub")
+-- Create the main window
+local Window = OrionLib:MakeWindow({
+    Name = "Grow A Garden Hub",
+    HidePremium = false,
+    SaveConfig = false,
+    IntroText = "🌿 Welcome to Grow A Garden Hub!"
+})
 
--- 🌾 Auto Farm Section
-local AutoTab = Window:TreeNode({ Title = "🌾 Auto Farm" })
+-- 🌾 Auto Farm Tab
+local autoTab = Window:MakeTab({
+    Name = "Auto Farm",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
 _G.AutoHarvest = false
 
-AutoTab:CreateToggle("Auto Harvest", function(state)
-    _G.AutoHarvest = state
-end)
+autoTab:AddToggle({
+    Name = "Auto Harvest",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoHarvest = Value
+    end
+})
 
+-- Harvesting logic
 local function CanHarvest(plant)
     local prompt = plant:FindFirstChildWhichIsA("ProximityPrompt", true)
     return prompt and prompt.Enabled
@@ -45,10 +60,15 @@ task.spawn(function()
     end
 end)
 
--- 🌱 Seed Shop Section
-local SeedTab = Window:TreeNode({ Title = "🌱 Seed Shop" })
-SeedTab:Button({
-    Text = "Open Seed Shop",
+-- 🌱 Seed Shop Tab
+local seedTab = Window:MakeTab({
+    Name = "Seed Shop",
+    Icon = "rbxassetid://7734053497",
+    PremiumOnly = false
+})
+
+seedTab:AddButton({
+    Name = "Open Seed Shop UI",
     Callback = function()
         local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Seed_Shop")
         if gui then
@@ -57,10 +77,15 @@ SeedTab:Button({
     end
 })
 
--- 🐣 Pet Eggs Section
-local PetTab = Window:TreeNode({ Title = "🐣 Pet Eggs" })
-PetTab:Button({
-    Text = "Open Pet UI",
+-- 🐣 Pet Eggs Tab
+local petTab = Window:MakeTab({
+    Name = "Pet Eggs",
+    Icon = "rbxassetid://7734005275",
+    PremiumOnly = false
+})
+
+petTab:AddButton({
+    Name = "Open Pet UI",
     Callback = function()
         local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Pet_UI")
         if gui then
@@ -69,10 +94,15 @@ PetTab:Button({
     end
 })
 
--- ⚔️ Gear Shop Section
-local GearTab = Window:TreeNode({ Title = "⚔️ Gear Shop" })
-GearTab:Button({
-    Text = "Open Gear Shop",
+-- ⚔️ Gear Shop Tab
+local gearTab = Window:MakeTab({
+    Name = "Gear Shop",
+    Icon = "rbxassetid://7733960981",
+    PremiumOnly = false
+})
+
+gearTab:AddButton({
+    Name = "Open Gear Shop UI",
     Callback = function()
         local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Gear_Shop")
         if gui then
@@ -81,10 +111,15 @@ GearTab:Button({
     end
 })
 
--- 🎉 Event UI Section
-local EventTab = Window:TreeNode({ Title = "🎉 Events" })
-EventTab:Button({
-    Text = "Open Event UI",
+-- 🎉 Event UI Tab
+local eventTab = Window:MakeTab({
+    Name = "Events",
+    Icon = "rbxassetid://7733960981",
+    PremiumOnly = false
+})
+
+eventTab:AddButton({
+    Name = "Open Event UI",
     Callback = function()
         local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Event_UI")
         if gui then
@@ -92,3 +127,6 @@ EventTab:Button({
         end
     end
 })
+
+-- Initialize Orion
+OrionLib:Init()
