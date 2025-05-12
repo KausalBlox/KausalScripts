@@ -1,22 +1,28 @@
--- ✅ Load Rayfield UI Library (official)
+-- ✅ Load Rayfield UI
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
--- ✅ Create main window
+-- ✅ Create Main UI Window
 local Window = Rayfield:CreateWindow({
     Name = "🌿 Grow A Garden Hub",
-    LoadingTitle = "Starting...",
+    LoadingTitle = "Loading...",
     LoadingSubtitle = "by Kausal",
     ConfigurationSaving = {
         Enabled = false
     },
-           MinimumSize = UDim2.new(0, 600, 0, 550)
+    MinimumSize = UDim2.new(0, 650, 0, 600) -- Big enough to prevent cutting
 })
 
--- 🌾 Auto Farm Tab
-local AutoFarmTab = Window:CreateTab("🌾 Auto Farm", 4483362458)
+-- ✅ Main Controls Tab (everything grouped here)
+local MainTab = Window:CreateTab("📋 Controls", 4483362458)
+
+--------------------------------------------------
+-- 🌾 AUTO FARM SECTION
+--------------------------------------------------
+MainTab:CreateSection("🌾 Auto Farm")
 
 _G.AutoHarvest = false
-AutoFarmTab:CreateToggle({
+
+MainTab:CreateToggle({
     Name = "Enable Auto Harvest",
     CurrentValue = false,
     Callback = function(Value)
@@ -51,9 +57,12 @@ task.spawn(function()
     end
 end)
 
--- 🌱 Seed Shop Tab
-local SeedTab = Window:CreateTab("🌱 Seed Shop", 7734053497)
-SeedTab:CreateButton({
+--------------------------------------------------
+-- 🌱 SEED SHOP SECTION
+--------------------------------------------------
+MainTab:CreateSection("🌱 Seed Shop")
+
+MainTab:CreateButton({
     Name = "Open Seed Shop UI",
     Callback = function()
         local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Seed_Shop")
@@ -61,19 +70,25 @@ SeedTab:CreateButton({
     end
 })
 
--- 🐣 Pet Eggs Tab
-local PetTab = Window:CreateTab("🐣 Pet Eggs", 7734005275)
-PetTab:CreateButton({
-    Name = "Open Pet UI",
+--------------------------------------------------
+-- 🐣 PET EGGS SECTION
+--------------------------------------------------
+MainTab:CreateSection("🐣 Pet Eggs")
+
+MainTab:CreateButton({
+    Name = "Open Pet Eggs UI",
     Callback = function()
         local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Pet_UI")
         if gui then gui.Enabled = true end
     end
 })
 
--- ⚔️ Gear Shop Tab
-local GearTab = Window:CreateTab("⚔️ Gear Shop", 7733960981)
-GearTab:CreateButton({
+--------------------------------------------------
+-- ⚔️ GEAR SHOP SECTION
+--------------------------------------------------
+MainTab:CreateSection("⚔️ Gear Shop")
+
+MainTab:CreateButton({
     Name = "Open Gear Shop UI",
     Callback = function()
         local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Gear_Shop")
@@ -81,9 +96,12 @@ GearTab:CreateButton({
     end
 })
 
--- 🎉 Events Tab
-local EventTab = Window:CreateTab("🎉 Event UI", 7733960981)
-EventTab:CreateButton({
+--------------------------------------------------
+-- 🎉 EVENT UI SECTION
+--------------------------------------------------
+MainTab:CreateSection("🎉 Event UI")
+
+MainTab:CreateButton({
     Name = "Open Event UI",
     Callback = function()
         local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Event_UI")
