@@ -8,7 +8,8 @@ local Window = Rayfield:CreateWindow({
     LoadingSubtitle = "by Kausal",
     ConfigurationSaving = {
         Enabled = false
-    }
+    },
+           MinimumSize = UDim2.new(0, 500, 0, 400)
 })
 
 -- 🌾 Auto Farm Tab
