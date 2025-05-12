@@ -4,8 +4,8 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
 local Window = Library:NewWindow("Grow A Garden Hub")
 
--- Auto Harvest Section
-local AutoTab = Window:NewSection("🌾 Auto Farm")
+-- 🌾 Auto Farm Section
+local AutoTab = Window:TreeNode({ Title = "🌾 Auto Farm" })
 _G.AutoHarvest = false
 
 AutoTab:CreateToggle("Auto Harvest", function(state)
@@ -45,38 +45,50 @@ task.spawn(function()
     end
 end)
 
--- Seed Shop Section
-local SeedTab = Window:NewSection("🌱 Seed Shop")
-SeedTab:Button("Open Seed Shop", function()
-    local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Seed_Shop")
-    if gui then
-        gui.Enabled = true
+-- 🌱 Seed Shop Section
+local SeedTab = Window:TreeNode({ Title = "🌱 Seed Shop" })
+SeedTab:Button({
+    Text = "Open Seed Shop",
+    Callback = function()
+        local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Seed_Shop")
+        if gui then
+            gui.Enabled = true
+        end
     end
-end)
+})
 
--- Pet Eggs Section
-local PetTab = Window:NewSection("🐣 Pet Eggs")
-PetTab:Button("Open Pet UI", function()
-    local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Pet_UI")
-    if gui then
-        gui.Enabled = true
+-- 🐣 Pet Eggs Section
+local PetTab = Window:TreeNode({ Title = "🐣 Pet Eggs" })
+PetTab:Button({
+    Text = "Open Pet UI",
+    Callback = function()
+        local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Pet_UI")
+        if gui then
+            gui.Enabled = true
+        end
     end
-end)
+})
 
--- Gear Shop Section
-local GearTab = Window:NewSection("⚔️ Gear Shop")
-GearTab:Button("Open Gear Shop", function()
-    local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Gear_Shop")
-    if gui then
-        gui.Enabled = true
+-- ⚔️ Gear Shop Section
+local GearTab = Window:TreeNode({ Title = "⚔️ Gear Shop" })
+GearTab:Button({
+    Text = "Open Gear Shop",
+    Callback = function()
+        local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Gear_Shop")
+        if gui then
+            gui.Enabled = true
+        end
     end
-end)
+})
 
--- Event UI Section
-local EventTab = Window:NewSection("🎉 Events")
-EventTab:Button("Open Event UI", function()
-    local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Event_UI")
-    if gui then
-        gui.Enabled = true
+-- 🎉 Event UI Section
+local EventTab = Window:TreeNode({ Title = "🎉 Events" })
+EventTab:Button({
+    Text = "Open Event UI",
+    Callback = function()
+        local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Event_UI")
+        if gui then
+            gui.Enabled = true
+        end
     end
-end)
+})
