@@ -1,50 +1,28 @@
--- ✅ Load Rayfield UI
-local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+-- Load Kavo UI
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("🌿 Grow A Garden Hub", "DarkTheme")
 
--- ✅ Create Main UI Window
-local Window = Rayfield:CreateWindow({
-    Name = "🌿 Grow A Garden Hub",
-    LoadingTitle = "Loading...",
-    LoadingSubtitle = "by Kausal",
-    ConfigurationSaving = {
-        Enabled = false
-    },
-    MinimumSize = UDim2.new(0, 650, 0, 600) -- Big enough to prevent cutting
-})
-
--- ✅ Main Controls Tab (everything grouped here)
-local MainTab = Window:CreateTab("📋 Controls", 4483362458)
-
---------------------------------------------------
--- 🌾 AUTO FARM SECTION
---------------------------------------------------
-MainTab:CreateSection("🌾 Auto Farm")
+-- 🌾 Auto Farm Tab
+local AutoFarmTab = Window:NewTab("🌾 Auto Farm")
+local AutoFarmSection = AutoFarmTab:NewSection("Auto Farm")
 
 _G.AutoHarvest = false
 
-MainTab:CreateToggle({
-    Name = "Enable Auto Harvest",
-    CurrentValue = false,
-    Callback = function(Value)
-        _G.AutoHarvest = Value
-    end
-})
+AutoFarmSection:NewToggle("Auto Harvest", "Automatically harvest plants", false, function(state)
+    _G.AutoHarvest = state
+end)
 
--- 🔁 Auto Harvest Loop
+-- Auto Harvest Loop
 task.spawn(function()
     while task.wait(1) do
         if not _G.AutoHarvest then continue end
-
         local player = game.Players.LocalPlayer
         local farmFolder = workspace:FindFirstChild("Farm")
         if not farmFolder then continue end
-
         local myFarm = farmFolder:FindFirstChild(player.Name)
         if not myFarm then continue end
-
         local important = myFarm:FindFirstChild("Important")
         if not important then continue end
-
         local plants = important:FindFirstChild("Plants_Physical")
         if not plants then continue end
 
@@ -57,54 +35,38 @@ task.spawn(function()
     end
 end)
 
---------------------------------------------------
--- 🌱 SEED SHOP SECTION
---------------------------------------------------
-MainTab:CreateSection("🌱 Seed Shop")
+-- 🌱 Seed Shop Tab
+local SeedShopTab = Window:NewTab("🌱 Seed Shop")
+local SeedSection = SeedShopTab:NewSection("Seed Shop")
 
-MainTab:CreateButton({
-    Name = "Open Seed Shop UI",
-    Callback = function()
-        local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Seed_Shop")
-        if gui then gui.Enabled = true end
-    end
-})
+SeedSection:NewButton("Open Seed Shop UI", "Opens the in-game seed shop", function()
+    local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Seed_Shop")
+    if gui then gui.Enabled = true end
+end)
 
---------------------------------------------------
--- 🐣 PET EGGS SECTION
---------------------------------------------------
-MainTab:CreateSection("🐣 Pet Eggs")
+-- 🐣 Pet Eggs Tab
+local PetEggsTab = Window:NewTab("🐣 Pet Eggs")
+local PetSection = PetEggsTab:NewSection("Pets")
 
-MainTab:CreateButton({
-    Name = "Open Pet Eggs UI",
-    Callback = function()
-        local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Pet_UI")
-        if gui then gui.Enabled = true end
-    end
-})
+PetSection:NewButton("Open Pet Eggs UI", "Opens the pet interface", function()
+    local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Pet_UI")
+    if gui then gui.Enabled = true end
+end)
 
---------------------------------------------------
--- ⚔️ GEAR SHOP SECTION
---------------------------------------------------
-MainTab:CreateSection("⚔️ Gear Shop")
+-- ⚔️ Gear Shop Tab
+local GearTab = Window:NewTab("⚔️ Gear Shop")
+local GearSection = GearTab:NewSection("Gear")
 
-MainTab:CreateButton({
-    Name = "Open Gear Shop UI",
-    Callback = function()
-        local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Gear_Shop")
-        if gui then gui.Enabled = true end
-    end
-})
+GearSection:NewButton("Open Gear Shop UI", "Opens the gear shop UI", function()
+    local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Gear_Shop")
+    if gui then gui.Enabled = true end
+end)
 
---------------------------------------------------
--- 🎉 EVENT UI SECTION
---------------------------------------------------
-MainTab:CreateSection("🎉 Event UI")
+-- 🎉 Event UI Tab
+local EventTab = Window:NewTab("🎉 Event UI")
+local EventSection = EventTab:NewSection("Event")
 
-MainTab:CreateButton({
-    Name = "Open Event UI",
-    Callback = function()
-        local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Event_UI")
-        if gui then gui.Enabled = true end
-    end
-})
+EventSection:NewButton("Open Event UI", "Opens the event menu", function()
+    local gui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Event_UI")
+    if gui then gui.Enabled = true end
+end)
